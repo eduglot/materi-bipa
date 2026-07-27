@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Keselamatan Berkendara</title>
+    <style>
+        :root {
+            --primary-color: #991b1b;
+            --secondary-color: #dc2626;
+            --accent-color: #ef4444;
+            --bg-color: #fef2f2;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #fee2e2;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #fef3c7;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        .grammar-box {
+            background-color: #fff7ed;
+            padding: 15px;
+            border-left: 4px solid #ea580c;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Pentingnya Menjaga Konsentrasi Saat Mengendarai Sepeda Motor di Jalan Raya</h3>
+            <p><strong>SURABAYA</strong> - Sepeda motor merupakan salah satu moda transportasi yang paling banyak digunakan oleh masyarakat Indonesia untuk melakukan mobilitas harian. Ukurannya yang lincah dan kemampuannya untuk menembus kemacetan kota menjadikan kendaraan ini pilihan utama pekerja dan pelajar. Namun, berkendara di jalan raya memerlukan tingkat kewaspadaan dan konsentrasi yang sangat tinggi.</p>
+            <br>
+            <p>Berdasarkan data dari pihak kepolisian, sebagian besar kecelakaan lalu lintas terjadi karena kelalaian pengemudi, seperti bermain ponsel saat berkendara atau tidak memperhatikan rambu-rambu lalu lintas. Tindakan berbahaya ini tidak hanya membahayakan diri sendiri, tetapi juga dapat mengancam keselamatan pengguna jalan lainnya.</p>
+            <br>
+            <p>Untuk menekan angka kecelakaan, pengelola keselamatan jalan terus mengampanyekan pentingnya penggunaan perlengkapan berkendara yang lengkap. Pengendara diwajibkan memakai helm berstandar resmi, jaket pelindung, serta sepatu yang tertutup. Selain itu, kondisi fisik kendaraan seperti rem, lampu, dan tekanan ban harus selalu diperiksa secara berkala sebelum melakukan perjalanan.</p>
+            <br>
+            <p>Petugas juga mengingatkan agar para pengendara selalu mematuhi batas kecepatan yang telah ditentukan, terutama saat melewati kawasan pemukiman atau area sekolah. Kecepatan yang terkontrol memberikan waktu reaksi yang lebih cukup bagi pengemudi untuk menghentikan kendaraan secara mendadak saat ada halangan di depan.</p>
+            <br>
+            <p>Kesadaran akan keselamatan lalu lintas merupakan tanggung jawab bersama seluruh pengguna jalan. Dengan saling menghormati antarpengendara dan selalu mengutamakan keselamatan daripada kecepatan, kita dapat menciptakan budaya berkendara yang aman dan nyaman bagi semua orang.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Mobilitas</strong></td>
+                    <td>Nomina</td>
+                    <td>Pergerakan atau perpindahan orang dari satu tempat ke tempat lain.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kelalaian</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Sifat atau sikap kurang berhati-hati; ceroboh atau lupa.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mengancam</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Memberikan potensi bahaya atau membahayakan keselamatan.</td>
+                </tr>
+                <tr>
+                    <td><strong>Menekan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Mengurangi, menurunkan, atau menahan jumlah/angka tertentu.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mendadak</strong></td>
+                    <td>Adjektiva / Adv.</td>
+                    <td>Terjadi secara tiba-tiba tanpa ada tanda-tanda atau persiapan.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mengutamakan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Mendahulukan atau mementingkan sesuatu di atas lainnya.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Mengapa sepeda motor menjadi moda transportasi pilihan utama bagi pekerja dan pelajar di Indonesia?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Apa penyebab utama terjadinya sebagian besar kecelakaan lalu lintas menurut data kepolisian?</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Sebutkan tiga perlengkapan berkendara yang wajib dipakai oleh pengendara sepeda motor!</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Bagian kendaraan apa saja yang harus diperiksa secara berkala sebelum melakukan perjalanan?</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Mengapa mematuhi batas kecepatan sangat penting saat melintasi area sekolah atau pemukiman?</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Imbuhan Pembentuk Kata Kerja Kausatif/Transitif (<em>me-...-kan</em>)</strong><br>
+            <small>
+                • utama &rarr; <strong>mengutamakan</strong> (mementingkan / membuat jadi utama)<br>
+                • utuh &rarr; <strong>menyatukan</strong> (membuat jadi satu/utuh)<br>
+                • tekan &rarr; <strong>menekan</strong> (mengurangi / menahan)
+            </small>
+        </div>
+
+        <h3>A. Ubahlah kata dasar di dalam kurung menjadi kata kerja berimbuhan me-...-kan yang tepat! (5 Soal)</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Pengendara harus selalu (utama) <input type="text" id="ga1" style="width:180px;"> keselamatan daripada kecepatan.</label>
+        </div>
+        <div class="question-group">
+            <label>2. Petugas polisi berusaha (tekan) <input type="text" id="ga2" style="width:180px;"> angka kecelakaan di jalan tol.</label>
+        </div>
+        <div class="question-group">
+            <label>3. Kebiasaan bermain ponsel saat berkendara dapat (bahaya) <input type="text" id="ga3" style="width:180px;"> pengguna jalan lain.</label>
+        </div>
+        <div class="question-group">
+            <label>4. Pemerintah terus (ampanye) <input type="text" id="ga4" style="width:180px;"> pentingnya memakai helm berstandar resmi.</label>
+        </div>
+        <div class="question-group">
+            <label>5. Helm pelindung berfungsi untuk (lindung) <input type="text" id="ga5" style="width:180px;"> kepala pengendara dari benturan keras.</label>
+        </div>
+
+        <br>
+        <h3>B. Lengkapilah kalimat di bawah ini dengan memilih kata kerja berimbuhan me-...-kan yang sesuai dari dalam kotak! (5 Soal)</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: mengingatkan | mematuhi | membahayakan | mengutamakan | menaikkan
+        </div>
+
+        <div class="question-group">
+            <label>1. Petugas lalu lintas selalu 
+                <select id="gb1">
+                    <option value="">-- Pilih --</option>
+                    <option value="mengingatkan">mengingatkan</option>
+                    <option value="mematuhi">mematuhi</option>
+                    <option value="membahayakan">membahayakan</option>
+                    <option value="mengutamakan">mengutamakan</option>
+                    <option value="menaikkan">menaikkan</option>
+                </select> 
+                warga agar tidak menerobos lampu merah.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Tindakan berkendara tanpa membawa SIM dapat 
+                <select id="gb2">
+                    <option value="">-- Pilih --</option>
+                    <option value="mengingatkan">mengingatkan</option>
+                    <option value="mematuhi">mematuhi</option>
+                    <option value="membahayakan">membahayakan</option>
+                    <option value="mengutamakan">mengutamakan</option>
+                    <option value="menaikkan">menaikkan</option>
+                </select> 
+                keselamatan diri sendiri.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Setiap pengendara wajib 
+                <select id="gb3">
+                    <option value="">-- Pilih --</option>
+                    <option value="mengingatkan">mengingatkan</option>
+                    <option value="mematuhi">mematuhi</option>
+                    <option value="membahayakan">membahayakan</option>
+                    <option value="mengutamakan">mengutamakan</option>
+                    <option value="menaikkan">menaikkan</option>
+                </select> 
+                aturan dan rambu-rambu lalu lintas yang ada.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Pengemudi bus diimbau untuk selalu 
+                <select id="gb4">
+                    <option value="">-- Pilih --</option>
+                    <option value="mengingatkan">mengingatkan</option>
+                    <option value="mematuhi">mematuhi</option>
+                    <option value="membahayakan">membahayakan</option>
+                    <option value="mengutamakan">mengutamakan</option>
+                    <option value="menaikkan">menaikkan</option>
+                </select> 
+                kenyamanan para penumpang.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Perusahaan transportasi terus berusaha 
+                <select id="gb5">
+                    <option value="">-- Pilih --</option>
+                    <option value="mengingatkan">mengingatkan</option>
+                    <option value="mematuhi">mematuhi</option>
+                    <option value="membahayakan">membahayakan</option>
+                    <option value="mengutamakan">mengutamakan</option>
+                    <option value="menaikkan">menaikkan</option>
+                </select> 
+                kualitas pelayanan mereka kepada publik.
+            </label>
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis Mandiri:</strong> Tuliskan 1 paragraf pendek (50-80 kata) yang berisi saran atau imbauan bagi teman Anda yang baru belajar mengendarai sepeda motor/mobil! Gunakan minimal 2 kata kerja berimbuhan <em>me-...-kan</em> (seperti: <em>mengutamakan, mengingatkan, membahayakan, mematikan</em>) yang telah dipelajari!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan saran atau imbauan Anda di sini..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-80 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-80 kata)`;
+        
+        if (words >= 50 && words <= 80) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Answer Key Part A
+        const keyA = {
+            ga1: "mengutamakan",
+            ga2: "menekan",
+            ga3: "membahayakan",
+            ga4: "mengampanyekan",
+            ga5: "melindungi"
+        };
+
+        // Answer Key Part B
+        const keyB = {
+            gb1: "mengingatkan",
+            gb2: "membahayakan",
+            gb3: "mematuhi",
+            gb4: "mengutamakan",
+            gb5: "menaikkan"
+        };
+
+        let score = 0;
+        let total = 10;
+
+        // Check Part A
+        for (let id in keyA) {
+            let input = document.getElementById(id).value.trim().toLowerCase();
+            if (input === keyA[id]) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let select = document.getElementById(id);
+            if (select.value === keyB[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Luar Biasa! Skor Anda: ${score}/${total}. Semua pembentukan kata me-...-kan Anda sudah benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom atau pilihan yang berwarna merah! <br><small>*Tips: Perhatikan peleburan huruf pertama saat diberi imbuhan me-...-kan (misal: ampanye &rarr; mengampanyekan, lindung &rarr; melindungi).</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>
