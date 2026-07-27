@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Pentingnya Tidur Cukup</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #3182ce;
+            --accent-color: #38a169;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e2e8f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #ebf8ff;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #2f855a;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+            display: block;
+        }
+
+        .grammar-box {
+            background-color: #fefcbf;
+            padding: 15px;
+            border-left: 4px solid #d69e2e;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e0;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Pentingnya Tidur Cukup Bagi Kesehatan Tubuh dan Efisiensi Kerja</h3>
+            <p><strong>JAKARTA</strong> - Di tengah padatnya aktivitas masyarakat perkotaan, kebiasaan begadang atau tidur terlambat kini semakin sering ditemukan. Banyak pekerja muda dan mahasiswa merasa bahwa mengurangi jam tidur dapat meningkatkan efisiensi waktu untuk menyelesaikan tugas. Padahal, kurang tidur secara terus-menerus justru memberikan dampak buruk bagi kesehatan dan konsentrasi kerja.</p>
+            <br>
+            <p>Para ahli kesehatan menjelaskan bahwa durasi tidur yang ideal untuk orang dewasa adalah 7 hingga 8 jam setiap malam. Saat tidur, tubuh bekerja untuk memperbaiki sel-sel yang rusak dan menyegarkan kembali fungsi otak. Jika seseorang tidur cukup, kualitas daya ingat dan kemampuannya dalam mengambil keputusan akan meningkat secara signifikan di pagi hari.</p>
+            <br>
+            <p>Sebaliknya, kurang tidur dapat menyebabkan rasa lelah berkepanjangan dan menurunkan daya tahan tubuh terhadap penyakit. Selain itu, emosi seseorang menjadi tidak stabil sehingga memicu stres saat menghadapi masalah pekerjaan. Secara jangka panjang, kebiasaan buruk ini dapat memicu timbulnya berbagai penyakit kronis, seperti tekanan darah tinggi dan gangguan jantung.</p>
+            <br>
+            <p>Untuk menjaga kestabilan energi harian, masyarakat disarankan untuk mulai menerapkan pola tidur yang teratur. Langkah awal yang sederhana adalah menghindari penggunaan ponsel pintar atau komputer minimal satu jam sebelum tidur. Cahaya biru dari layar alat elektronik dapat mengganggu produksi hormon tidur alami di dalam tubuh.</p>
+            <br>
+            <p>Mulai sekarang, mulailah menghargai waktu istirahat secara seimbang. Tidur tepat waktu bukan berarti mengurangi produktivitas, melainkan bentuk investasi terbaik agar kita dapat bekerja dengan pikiran yang jernih dan tubuh yang tetap sehat.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Efisiensi</strong></td>
+                    <td>Nomina</td>
+                    <td>Ketepatan cara / usaha dalam melakukan sesuatu tanpa membuang waktu.</td>
+                </tr>
+                <tr>
+                    <td><strong>Begadang</strong></td>
+                    <td>Verba</td>
+                    <td>Berjaga dan tidak tidur sampai larut malam.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kesehatan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Kondisi tubuh yang bebas dari penyakit atau gangguan fisik.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kestabilan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Keadaan yang tenang, seimbang, dan tidak mudah berubah.</td>
+                </tr>
+                <tr>
+                    <td><strong>Memicu</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Menjadi penyebab atau menggerakkan timbulnya suatu reaksi/masalah.</td>
+                </tr>
+                <tr>
+                    <td><strong>Signifikan</strong></td>
+                    <td>Adjektiva</td>
+                    <td>Sangat penting, nyata, atau memberikan pengaruh besar.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Mengapa sebagian pekerja muda dan mahasiswa sering mengurangi jam tidur mereka?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Berapa jam durasi tidur malam yang ideal bagi orang dewasa menurut ahli kesehatan?</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Apa yang terjadi pada tubuh dan otak manusia saat sedang tidur malam?</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Sebutkan dua dampak negatif bagi emosi dan fisik akibat kurang tidur secara terus-menerus!</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Mengapa kita disarankan menghindari penggunaan ponsel pintar sebelum tidur?</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Kata Penghubung Pertentangan / Konjungsi Adversatif (Meskipun / Padahal / Sebaliknya)</strong>
+        </div>
+
+        <h3>A. Lengkapilah kalimat di bawah ini dengan kata penghubung yang tepat: <em>Padahal</em> atau <em>Sebaliknya</em>!</h3>
+        <br>
+        
+        <div class="question-group">
+            <label>1. Pria itu tetap bekerja sampai larut malam, 
+                <select id="ga1">
+                    <option value="">-- Pilih --</option>
+                    <option value="padahal">padahal</option>
+                    <option value="sebaliknya">sebaliknya</option>
+                </select> 
+                tubuhnya sudah sangat lelah.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Tidur yang cukup membuat tubuh menjadi segar. 
+                <select id="ga2">
+                    <option value="">-- Pilih --</option>
+                    <option value="padahal">Padahal</option>
+                    <option value="sebaliknya">Sebaliknya</option>
+                </select>, 
+                kurang tidur membuat kita sulit berkonsentrasi.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Anak-anak terus bermain ponsel hingga malam hari, 
+                <select id="ga3">
+                    <option value="">-- Pilih --</option>
+                    <option value="padahal">padahal</option>
+                    <option value="sebaliknya">sebaliknya</option>
+                </select> 
+                besok pagi mereka harus ujian.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Banyak orang menganggap begadang mempermudah pekerjaan. 
+                <select id="ga4">
+                    <option value="">-- Pilih --</option>
+                    <option value="padahal">Padahal</option>
+                    <option value="sebaliknya">Sebaliknya</option>
+                </select>, 
+                kebiasaan ini justru menurunkan kualitas kerja.
+            </label>
+        </div>
+
+        <br>
+        <h3>B. Gabungkan dua kalimat pendek di bawah ini menjadi satu kalimat yang utuh menggunakan kata penghubung "Meskipun" di awal kalimat!</h3>
+        <p><em>Contoh: Tubuhnya lelah. Dia tetap menyelesaikan tugasnya. &rarr; <strong>Meskipun tubuhnya lelah, dia tetap menyelesaikan tugasnya.</strong></em></p>
+        <br>
+
+        <div class="question-group">
+            <label>1. Jadwal kerjanya sangat padat. Dia selalu tidur tepat waktu.</label>
+            <input type="text" id="gb1" placeholder="Meskipun ...">
+        </div>
+        <div class="question-group">
+            <label>2. Harga obat itu mahal. Banyak orang membelinya demi kebaikan fisik.</label>
+            <input type="text" id="gb2" placeholder="Meskipun ...">
+        </div>
+        <div class="question-group">
+            <label>3. Layar ponsel mengganggu kualitas tidur. Masih banyak orang menggunakannya di tempat tidur.</label>
+            <input type="text" id="gb3" placeholder="Meskipun ...">
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis Mandiri:</strong> Tuliskan rutinitas malam Anda sebelum tidur dalam 1 paragraf pendek (50-70 kata)! Gunakan minimal satu kata penghubung pertentangan (<em>meskipun / padahal / sebaliknya</em>) yang sudah Anda pelajari!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan rutinitas malam Anda di sini..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-70 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-70 kata)`;
+        
+        if (words >= 50 && words <= 70) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#718096';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Answer Key
+        const keyA = {
+            ga1: "padahal",
+            ga2: "sebaliknya",
+            ga3: "padahal",
+            ga4: "sebaliknya" // Bisa juga "Padahal" tergantung perspektif konteks, tapi "sebaliknya" menyajikan kontras antarkalimat.
+        };
+
+        // Key B (Flexible Check for "Meskipun ... , ...")
+        const keyB = {
+            gb1: ["meskipun jadwal kerjanya sangat padat, dia selalu tidur tepat waktu.", "meskipun jadwal kerjanya sangat padat dia selalu tidur tepat waktu"],
+            gb2: ["meskipun harga obat itu mahal, banyak orang membelinya demi kebaikan fisik.", "meskipun harga obat itu mahal banyak orang membelinya demi kebaikan fisik"],
+            gb3: ["meskipun layar ponsel mengganggu kualitas tidur, masih banyak orang menggunakannya di tempat tidur.", "meskipun layar ponsel mengganggu kualitas tidur masih banyak orang menggunakannya di tempat tidur"]
+        };
+
+        let score = 0;
+        let total = 7;
+
+        // Check Part A
+        for (let id in keyA) {
+            let select = document.getElementById(id);
+            if (select.value.toLowerCase() === keyA[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let input = document.getElementById(id).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            // Check if user answer matches any variation in keyB
+            if (keyB[id].some(validAns => input === validAns)) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Sempurna! Skor Anda: ${score}/${total}. Semua jawaban Anda benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom/pilihan yang berwarna merah! <br><small>*Pastikan penulisan gabungan 'Meskipun' diawali huruf kapital dan diberi tanda koma sebelum klausa kedua.</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>

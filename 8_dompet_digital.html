@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Aplikasi Dompet Digital</title>
+    <style>
+        :root {
+            --primary-color: #0d3b66;
+            --secondary-color: #0077b6;
+            --accent-color: #e0a96d;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #e0f2fe;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #fff8e7;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #8a5300;
+            border: 1px solid #ffe8b5;
+        }
+
+        .grammar-box {
+            background-color: #f0f4f8;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Aplikasi Dompet Digital Semakin Memudahkan Transaksi Harian Masyarakat</h3>
+            <p><strong>JAKARTA</strong> - Kebiasaan bertransaksi masyarakat di Indonesia kini mengalami perubahan yang sangat pesat. Beberapa tahun lalu, hampir semua orang harus membawa uang tunai berlipat-lipat di dalam dompet saat ingin berbelanja atau makan di restoran. Namun, berkat perkembangan teknologi finansial, penggunaan aplikasi dompet digital (e-wallet) kini sudah menjadi hal yang biasa dalam kehidupan sehari-hari.</p>
+            <br>
+            <p>Hanya dengan menggunakan ponsel pintar, pembeli cukup memindai kode QR yang tersedia di meja kasir. Setelah memasukkan kode keamanan, proses pembayaran dapat selesai dalam hitungan detik. Kepraktisan ini membuat masyarakat tidak perlu lagi mengantre lama di mesin ATM untuk mengambil uang tunai sebelum berpergian.</p>
+            <br>
+            <p>Selain digunakan untuk membeli makanan dan pakaian, dompet digital juga sangat membantu masyarakat dalam membayar tagihan bulanan. Sebelum ada dompet digital, orang-orang harus datang langsung ke kantor pos atau bank hanya untuk membayar listrik, air, dan internet. Sekarang, seluruh pembayaran tersebut bisa diselesaikan dari rumah kapan saja.</p>
+            <br>
+            <p>Meskipun demikian, para pengguna mengimbau agar masyarakat tetap berhati-hati saat bertransaksi secara daring. Pemilik akun harus rajin mengganti kata sandi secara berkala dan tidak membagikan kode rahasia kepada orang lain. Kewaspadaan ini sangat penting sebelum kejahatan siber terjadi dan merugikan keuangan pengguna.</p>
+            <br>
+            <p>Secara keseluruhan, sistem pembayaran digital membawa kemudahan besar bagi perekonomian modern. Sebelum sistem ini meluas ke seluruh daerah, pemerintah dan lembaga keuangan terus memperkuat jaringan internet serta keamanan data konsumen demi kenyamanan transaksi bersama.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Uang tunai</strong></td>
+                    <td>Nomina</td>
+                    <td>Uang fisik dalam bentuk kertas atau logam.</td>
+                </tr>
+                <tr>
+                    <td><strong>Finansial</strong></td>
+                    <td>Adjektiva</td>
+                    <td>Mengenai urusan keuangan atau uang.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mengantre</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Berdiri berderet-deret menunggu giliran.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tagihan</strong></td>
+                    <td>Nomina</td>
+                    <td>Jumlah uang yang harus dibayar atas layanan/barang yang digunakan.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kewaspadaan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Sifat atau sikap selalu berhati-hati dan siap siaga.</td>
+                </tr>
+                <tr>
+                    <td><strong>Meluas</strong></td>
+                    <td>Verba</td>
+                    <td>Menjadi lebih lebar, bertambah banyak, atau tersebar ke berbagai area.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Perubahan apa yang terjadi pada kebiasaan pembayaran masyarakat Indonesia saat berbelanja?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Bagaimana cara melakukan pembayaran menggunakan dompet digital di toko atau restoran?</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Sebutkan contoh pembayaran tagihan bulanan yang bisa diselesaikan melalui dompet digital!</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Apa yang harus dilakukan pengguna untuk menjaga keamanan akun dompet digital mereka?</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Upaya apa yang dilakukan pemerintah dan lembaga keuangan sebelum sistem digital meluas ke seluruh daerah?</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Kata Penghubung Waktu / Konjungsi Temporal (Sebelum / Setelah / Sebelum ada / Berkat / Sehabis)</strong><br>
+            <small>
+                • <strong>Sebelum</strong>: Menandai peristiwa yang terjadi lebih awal dari peristiwa utama.<br>
+                • <strong>Setelah / Sehabis</strong>: Menandai peristiwa yang dilakukan seusai peristiwa lain selesai.<br>
+                • <strong>Berkat</strong>: Menyatakan sebab yang menghasilkan dampak positif.
+            </small>
+        </div>
+
+        <h3>A. Lengkapilah kalimat di bawah ini dengan memilih kata penghubung temporal yang tepat! (5 Soal)</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: sebelum | setelah | berkat | sebelum ada | sehabis
+        </div>
+
+        <div class="question-group">
+            <label>1. 
+                <select id="ga1">
+                    <option value="">-- Pilih --</option>
+                    <option value="sebelum">sebelum</option>
+                    <option value="setelah">setelah</option>
+                    <option value="berkat">berkat</option>
+                    <option value="sebelum ada">sebelum ada</option>
+                    <option value="sehabis">sehabis</option>
+                </select> 
+                teknologi dompet digital, orang-orang harus datang langsung ke bank untuk mengirim uang.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. 
+                <select id="ga2">
+                    <option value="">-- Pilih --</option>
+                    <option value="sebelum">sebelum</option>
+                    <option value="setelah">setelah</option>
+                    <option value="berkat">berkat</option>
+                    <option value="sebelum ada">sebelum ada</option>
+                    <option value="sehabis">sehabis</option>
+                </select> 
+                memindai kode QR di kasir, pembeli harus memasukkan kode keamanan akun mereka.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. 
+                <select id="ga3">
+                    <option value="">-- Pilih --</option>
+                    <option value="sebelum">sebelum</option>
+                    <option value="setelah">setelah</option>
+                    <option value="berkat">berkat</option>
+                    <option value="sebelum ada">sebelum ada</option>
+                    <option value="sehabis">sehabis</option>
+                </select> 
+                aplikasi pembayaran ini, proses transaksi di toko menjadi sangat cepat dan efisien.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Pastikan Anda memeriksa kembali saldo akun 
+                <select id="ga4">
+                    <option value="">-- Pilih --</option>
+                    <option value="sebelum">sebelum</option>
+                    <option value="setelah">setelah</option>
+                    <option value="berkat">berkat</option>
+                    <option value="sebelum ada">sebelum ada</option>
+                    <option value="sehabis">sehabis</option>
+                </select> 
+                meninggalkan area kasir.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Siswa itu selalu mematikan koneksi internet 
+                <select id="ga5">
+                    <option value="">-- Pilih --</option>
+                    <option value="sebelum">sebelum</option>
+                    <option value="setelah">setelah</option>
+                    <option value="berkat">berkat</option>
+                    <option value="sebelum ada">sebelum ada</option>
+                    <option value="sehabis">sehabis</option>
+                </select> 
+                menggunakan aplikasi dompet digital di tempat umum.
+            </label>
+        </div>
+
+        <br>
+        <h3>B. Gabungkan dua kalimat pendek di bawah ini menggunakan kata penghubung waktu yang ditentukan dalam kurung! (5 Soal)</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Pembeli memilih barang belanjaan. Pembeli membayar di meja kasir. <em>(Gunakan: sebelum)</em></label>
+            <input type="text" id="gb1" placeholder="Tulis gabungan kalimat di sini...">
+        </div>
+        <div class="question-group">
+            <label>2. Kasir menghitung total harga barang. Konsumen memindai kode QR pembayaran. <em>(Gunakan: setelah)</em></label>
+            <input type="text" id="gb2" placeholder="Tulis gabungan kalimat di sini...">
+        </div>
+        <div class="question-group">
+            <label>3. Ada jaringan internet yang stabil. Transaksi di daerah terpencil menjadi sangat sulit. <em>(Gunakan: Sebelum ada)</em></label>
+            <input type="text" id="gb3" placeholder="Tulis gabungan kalimat di sini...">
+        </div>
+        <div class="question-group">
+            <label>4. Dukungan teknologi finansial modern. Usaha kecil di desa dapat berkembang pesat. <em>(Gunakan: Berkat)</em></label>
+            <input type="text" id="gb4" placeholder="Tulis gabungan kalimat di sini...">
+        </div>
+        <div class="question-group">
+            <label>5. Pengguna menyelesaikan pembayaran listrik. Pengguna menerima bukti transaksi di layar ponsel. <em>(Gunakan: sehabis)</em></label>
+            <input type="text" id="gb5" placeholder="Tulis gabungan kalimat di sini...">
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis Mandiri:</strong> Tuliskan 1 paragraf pendek (50-80 kata) menceritakan pengalaman Anda saat membayar barang secara nontunai (<em>cashless</em>) atau tunai! Gunakan minimal 2 kata penghubung waktu (<em>sebelum / setelah / berkat</em>) yang telah dipelajari!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan cerita pengalaman Anda di sini..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-80 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-80 kata)`;
+        
+        if (words >= 50 && words <= 80) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Answer Key Part A
+        const keyA = {
+            ga1: "sebelum ada",
+            ga2: "setelah",
+            ga3: "berkat",
+            ga4: "sebelum",
+            ga5: "sehabis" // bisa juga 'setelah', namun sesuai konteks variasi kotak kata adalah sehabis
+        };
+
+        // Answer Key Part B
+        const keyB = {
+            gb1: [
+                "pembeli memilih barang belanjaan sebelum membayar di meja kasir",
+                "pembeli memilih barang belanjaan sebelum pembeli membayar di meja kasir"
+            ],
+            gb2: [
+                "setelah kasir menghitung total harga barang, konsumen memindai kode qr pembayaran",
+                "setelah kasir menghitung total harga barang konsumen memindai kode qr pembayaran",
+                "konsumen memindai kode qr pembayaran setelah kasir menghitung total harga barang"
+            ],
+            gb3: [
+                "sebelum ada jaringan internet yang stabil, transaksi di daerah terpencil menjadi sangat sulit",
+                "sebelum ada jaringan internet yang stabil transaksi di daerah terpencil menjadi sangat sulit"
+            ],
+            gb4: [
+                "berkat dukungan teknologi finansial modern, usaha kecil di desa dapat berkembang pesat",
+                "berkat dukungan teknologi finansial modern usaha kecil di desa dapat berkembang pesat"
+            ],
+            gb5: [
+                "sehabis pengguna menyelesaikan pembayaran listrik, pengguna menerima bukti transaksi di layar ponsel",
+                "pengguna menerima bukti transaksi di layar ponsel sehabis menyelesaikan pembayaran listrik",
+                "sehabis menyelesaikan pembayaran listrik, pengguna menerima bukti transaksi di layar ponsel"
+            ]
+        };
+
+        let score = 0;
+        let total = 10;
+
+        // Check Part A
+        for (let id in keyA) {
+            let select = document.getElementById(id);
+            if (select.value.toLowerCase() === keyA[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let input = document.getElementById(id).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            if (input.endsWith('.')) {
+                input = input.slice(0, -1);
+            }
+
+            const validOptions = keyB[id].map(opt => opt.endsWith('.') ? opt.slice(0, -1) : opt);
+
+            if (validOptions.includes(input)) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Luar biasa! Skor Anda: ${score}/${total}. Semua jawaban Anda tepat!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali pilihan atau kalimat yang berwarna merah! <br><small>*Petunjuk: Cek urutan klausa dan ketepatan penggunaan kata penghubung waktu yang diminta.</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Membaca & Tata Bahasa</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #27ae60;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #f4f6f7;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #219150;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #eef7fc;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .grammar-box {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 20px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Tren Kebiasaan Membaca Buku Digital di Kalangan Anak Muda Indonesia</h3>
+            <p><strong>YOGYAKARTA</strong> - Dalam beberapa tahun terakhir, minat membaca buku di kalangan anak muda Indonesia mengalami perubahan yang cukup besar. Dulu, masyarakat lebih terbiasa membeli dan membaca buku cetak di perpustakaan atau toko buku. Namun, karena perkembangan teknologi internet yang sangat cepat, saat ini tren membaca buku digital (e-book) semakin populer.</p>
+            <br>
+            <p>Ada beberapa alasan utama mengapa anak muda lebih memilih buku digital. Pertama, kemudahan akses menjadi faktor terpenting. Dengan aplikasi perpustakaan digital di ponsel pintar, pengguna bisa membaca ribuan judul buku kapan saja dan di mana saja tanpa harus membawa tas yang berat. Kedua, faktor harga juga berpengaruh karena harga buku digital biasanya lebih murah daripada buku cetak, bahkan banyak yang bisa dipinjam secara gratis.</p>
+            <br>
+            <p>Meskipun aplikasi digital menawarkan banyak kepraktisan, beberapa orang masih menghadapi kesulitan saat membaca di layar ponsel. Tantangan utama yang sering dirasakan adalah mata menjadi cepat lelah karena paparan cahaya layar. Selain itu, gangguan dari notifikasi media sosial sering membuat pembaca kehilangan konsentrasi.</p>
+            <br>
+            <p>Melihat fenomena ini, para penulis dan penerbit buku di Indonesia mulai beradaptasi. Mereka tidak hanya menerbitkan karya dalam bentuk cetak, tetapi juga menyediakan versi digital secara bersamaan. Langkah ini diambil agar mereka tetap bisa menjangkau pembaca dari generasi muda yang hidup di era serbadigital.</p>
+            <br>
+            <p>Secara keseluruhan, kehadiran buku digital membawa dampak positif bagi peningkatan literasi di Indonesia. Baik membaca buku cetak maupun buku digital, hal yang paling penting adalah konsistensi dalam membangun kebiasaan membaca setiap hari demi menambah wawasan.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Kemudahan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Hal yang mudah; kondisi yang tidak sulit dilakukan.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kesulitan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Hal yang sulit; masalah atau rintangan yang dihadapi.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kepraktisan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Sifat yang praktis, efisien, dan tidak rumit.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kehadiran</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Kemunculan atau keberadaan sesuatu di suatu tempat/era.</td>
+                </tr>
+                <tr>
+                    <td><strong>Peningkatan</strong></td>
+                    <td>Nomina (pe-...-an)</td>
+                    <td>Proses menjadi lebih baik, lebih tinggi, atau lebih banyak.</td>
+                </tr>
+                <tr>
+                    <td><strong>Konsistensi</strong></td>
+                    <td>Nomina</td>
+                    <td>Ketetapan atau kebiasaan yang dilakukan secara terus-menerus.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Perubahan apa yang terjadi pada kebiasaan membaca anak muda di Indonesia?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Mengapa kemudahan akses menjadi alasan utama orang memilih buku digital?</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Sebutkan dua tantangan yang dirasakan saat membaca buku di layar ponsel!</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Apa langkah yang dilakukan oleh para penulis dan penerbit untuk beradaptasi dengan tren ini?</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Menurut teks, apa hal yang paling penting dalam membangun kebiasaan membaca?</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Nomina Konfiks <em>ke-...-an</em> (Menyatakan Keadaan atau Hal)</strong><br>
+            Contoh: 
+            <ul>
+                <li>mudah &rarr; <strong>kemudahan</strong> (hal yang mudah)</li>
+                <li>sulit &rarr; <strong>kesulitan</strong> (hal yang sulit)</li>
+            </ul>
+        </div>
+
+        <h3>A. Ubahlah kata sifat (Adjektiva) di bawah ini menjadi kata benda (Nomina) menggunakan konfiks ke-...-an!</h3>
+        <br>
+        
+        <div class="question-group">
+            <label>1. Bersih &rarr; <input type="text" id="ga1" style="width:200px;"></label>
+            <p><em>(Contoh: Warga desa selalu menjaga __________ lingkungan.)</em></p>
+        </div>
+        <div class="question-group">
+            <label>2. Sehat &rarr; <input type="text" id="ga2" style="width:200px;"></label>
+            <p><em>(Contoh: Olahraga rutin sangat penting untuk __________ tubuh.)</em></p>
+        </div>
+        <div class="question-group">
+            <label>3. Indah &rarr; <input type="text" id="ga3" style="width:200px;"></label>
+            <p><em>(Contoh: Turis datang untuk menikmati __________ alam Bali.)</em></p>
+        </div>
+        <div class="question-group">
+            <label>4. Nyaman &rarr; <input type="text" id="ga4" style="width:200px;"></label>
+            <p><em>(Contoh: Aplikasi ini dibuat untuk memberikan __________ bagi pengguna.)</em></p>
+        </div>
+
+        <br>
+        <h3>B. Lengkapilah kalimat di bawah ini menggunakan kata berimbuhan ke-...-an yang tepat dari dalam kotak!</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: kemudahan | kesulitan | kehadiran | kepraktisan | kebiasaan
+        </div>
+
+        <div class="question-group">
+            <label>1. Banyak siswa mengalami <input type="text" id="gb1" style="width:150px;"> saat belajar bahasa asing tanpa latihan.</label>
+        </div>
+        <div class="question-group">
+            <label>2. Teknologi internet memberikan <input type="text" id="gb2" style="width:150px;"> dalam mencari informasi secara cepat.</label>
+        </div>
+        <div class="question-group">
+            <label>3. <input type="text" id="gb3" style="width:150px;"> buku digital sangat membantu masyarakat yang tinggal jauh dari toko buku.</label>
+        </div>
+        <div class="question-group">
+            <label>4. Membaca setiap malam sebelum tidur adalah <input type="text" id="gb4" style="width:150px;"> yang sangat baik.</label>
+        </div>
+        <div class="question-group">
+            <label>5. Banyak orang menyukai ponsel pintar karena faktor <input type="text" id="gb5" style="width:150px;"> dalam berkomunikasi.</label>
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis (Opini):</strong> Apakah Anda lebih suka membaca buku cetak atau buku digital? Tuliskan pendapat Anda dalam 1 paragraf (50-70 kata) dan berikan 2 alasannya!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tulis paragraf opini Anda di sini..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-70 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-70 kata)`;
+        
+        if (words >= 50 && words <= 70) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#666';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Answer Key
+        const keyA = {
+            ga1: "kebersihan",
+            ga2: "kesehatan",
+            ga3: "keindahan",
+            ga4: "kenyamanan"
+        };
+
+        const keyB = {
+            gb1: "kesulitan",
+            gb2: "kemudahan",
+            gb3: "kehadiran",
+            gb4: "kebiasaan",
+            gb5: "kepraktisan"
+        };
+
+        let score = 0;
+        let total = 9;
+
+        // Check Part A
+        for (let id in keyA) {
+            let input = document.getElementById(id).value.trim().toLowerCase();
+            if (input === keyA[id]) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let input = document.getElementById(id).value.trim().toLowerCase();
+            if (input === keyB[id]) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Sempurna! Skor Anda: ${score}/${total}. Semua jawaban benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom yang berwarna merah!`;
+        }
+    }
+</script>
+
+</body>
+</html>

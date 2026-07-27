@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Pupuk Kompos Organik</title>
+    <style>
+        :root {
+            --primary-color: #3a5a40;
+            --secondary-color: #588157;
+            --accent-color: #a3b18a;
+            --earth-color: #8b5a2b;
+            --bg-color: #f4f6f0;
+            --card-bg: #ffffff;
+            --text-color: #2b2d42;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #e9edc9;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #faedcd;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #7f5539;
+            border: 1px solid #e9edc9;
+        }
+
+        .grammar-box {
+            background-color: #f4f1de;
+            padding: 15px;
+            border-left: 4px solid var(--earth-color);
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Pemanfaatan Sampah Makanan Menjadi Pupuk Kompos Organik di Lingkungan Rumah</h3>
+            <p><strong>MALANG</strong> - Sampah sisa makanan dari dapur rumah tangga merupakan salah satu penyumbang terbesar volume sampah di tempat pembuangan akhir. Untuk mengatasi permasalahan ini, sebuah komunitas warga di Malang mulai menggalakkan gerakan pengolahan sampah organik mandiri. Mereka memanfaatkan sisa sayuran, buah-buahan, dan daun kering untuk diolah menjadi pupuk kompos berkualitas tinggi.</p>
+            <br>
+            <p>Proses pembuatan pupuk kompos ini terbilang cukup mudah dan tidak membutuhkan lahan yang luas. Sisa bahan organik cukup dicincang kecil-kecil, lalu dimasukkan ke dalam wadah atau tong komposter. Setelah itu, bahan tersebut dicampur dengan sedikit tanah dan cairan mikroorganisme agar proses pembusukan alami dapat berjalan lebih cepat.</p>
+            <br>
+            <p>Hasil dari pengolahan kompos ini memberikan banyak manfaat bagi lingkungan setempat. Selain mengurangi bau tidak sedap di sekitar tempat sampah rumah tangga, pupuk organik yang dihasilkan dapat digunakan untuk menyuburkan tanaman hias dan sayuran di pekarangan rumah warga tanpa menggunakan bahan kimia berbahaya.</p>
+            <br>
+            <p>Gerakan ramah lingkungan ini terus disosialisasikan kepada masyarakat luas. Melalui pelatihan rutin di balai desa, para pengurus komunitas mengajari warga tentang cara memilah sampah rumah tangga dengan benar. Banyak warga yang merasa puas karena biaya pembelian pupuk untuk kebun rumah kini menjadi jauh lebih hemat.</p>
+            <br>
+            <p>Keberhasilan program ini membuktikan bahwa kesadaran lingkungan dapat dimulai dari langkah kecil di dalam rumah. Dengan mengolah sisa makanan menjadi hal yang berguna, masyarakat tidak hanya membantu mengurangi beban pencemaran lingkungan, tetapi juga menciptakan ekosistem hidup yang lebih bersih dan sehat.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Penyumbang</strong></td>
+                    <td>Nomina (pe-...)</td>
+                    <td>Pemberi atau pihak yang menyebabkan bertambahnya sesuatu.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pengolahan</strong></td>
+                    <td>Nomina (pe-...-an)</td>
+                    <td>Proses mengerjakan atau mengubah sesuatu menjadi barang baru.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pembusukan</strong></td>
+                    <td>Nomina (pe-...-an)</td>
+                    <td>Proses menjadi hancur atau rusak secara alami karena bakteri/jamur.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pencemaran</strong></td>
+                    <td>Nomina (pe-...-an)</td>
+                    <td>Proses atau perbuatan yang membuat lingkungan menjadi kotor/rusak.</td>
+                </tr>
+                <tr>
+                    <td><strong>Menyuburkan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Membuat tanah atau tanaman menjadi baik, sehat, dan tumbuh cepat.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pemilahan</strong></td>
+                    <td>Nomina (pe-...-an)</td>
+                    <td>Proses memilih dan memisahkan barang berdasarkan jenisnya.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Masalah lingkungan apa yang menjadi alasan dibuatnya gerakan pengolahan sampah di Malang?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Sebutkan bahan-bahan organik yang digunakan oleh warga untuk membuat pupuk kompos!</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Mengapa cairan mikroorganisme ditambahkan ke dalam wadah komposter?</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Sebutkan dua manfaat yang dirasakan warga setelah menggunakan pupuk kompos buatan sendiri!</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Bagaimana cara komunitas mengedukasi dan mengajak masyarakat luas untuk ikut serta dalam program ini?</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Pembentukan Kata Benda Proses / Tindakan (Nomina Imbuhan <em>pe-...-an</em>)</strong><br>
+            <small>
+                • olah &rarr; <strong>pengolahan</strong> (proses mengolah)<br>
+                • buang &rarr; <strong>pembuangan</strong> (proses membuang)<br>
+                • cemar &rarr; <strong>pencemaran</strong> (proses mencemari)
+            </small>
+        </div>
+
+        <h3>A. Ubahlah kata kerja/kata dasar di dalam kurung menjadi kata benda berimbuhan pe-...-an yang tepat! (5 Soal)</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Proses (olah) <input type="text" id="ga1" style="width:180px;"> sampah organik dapat dilakukan di pekarangan rumah.</label>
+        </div>
+        <div class="question-group">
+            <label>2. Pemerintah daerah mengatur tempat (buang) <input type="text" id="ga2" style="width:180px;"> sampah akhir agar tidak dekat dari pemukiman.</label>
+        </div>
+        <div class="question-group">
+            <label>3. Warga mengikuti pelatihan (pilah) <input type="text" id="ga3" style="width:180px;"> sampah plastik dan sampah dapur.</label>
+        </div>
+        <div class="question-group">
+            <label>4. Gunakan bahan alami untuk menghindari (cemar) <input type="text" id="ga4" style="width:180px;"> tanah akibat zat kimia.</label>
+        </div>
+        <div class="question-group">
+            <label>5. Proses (busuk) <input type="text" id="ga5" style="width:180px;"> daun kering membutuhkan waktu beberapa minggu.</label>
+        </div>
+
+        <br>
+        <h3>B. Lengkapilah kalimat di bawah ini dengan memilih kata berimbuhan pe-...-an yang sesuai dari dalam kotak! (5 Soal)</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: pembuatan | pelatihan | pembelian | pengolahan | pencemaran
+        </div>
+
+        <div class="question-group">
+            <label>1. Masyarakat desa bergotong-royong untuk mencegah 
+                <select id="gb1">
+                    <option value="">-- Pilih --</option>
+                    <option value="pembuatan">pembuatan</option>
+                    <option value="pelatihan">pelatihan</option>
+                    <option value="pembelian">pembelian</option>
+                    <option value="pengolahan">pengolahan</option>
+                    <option value="pencemaran">pencemaran</option>
+                </select> 
+                air di sungai setempat.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Proses 
+                <select id="gb2">
+                    <option value="">-- Pilih --</option>
+                    <option value="pembuatan">pembuatan</option>
+                    <option value="pelatihan">pelatihan</option>
+                    <option value="pembelian">pembelian</option>
+                    <option value="pengolahan">pengolahan</option>
+                    <option value="pencemaran">pencemaran</option>
+                </select> 
+                pupuk kompos organik ini sangat ramah lingkungan dan tidak berbau.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Pengurus RT mengadakan 
+                <select id="gb3">
+                    <option value="">-- Pilih --</option>
+                    <option value="pembuatan">pembuatan</option>
+                    <option value="pelatihan">pelatihan</option>
+                    <option value="pembelian">pembelian</option>
+                    <option value="pengolahan">pengolahan</option>
+                    <option value="pencemaran">pencemaran</option>
+                </select> 
+                berkebun untuk para warga di balai desa.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Dengan membuat kompos sendiri, warga dapat menghemat biaya 
+                <select id="gb4">
+                    <option value="">-- Pilih --</option>
+                    <option value="pembuatan">pembuatan</option>
+                    <option value="pelatihan">pelatihan</option>
+                    <option value="pembelian">pembelian</option>
+                    <option value="pengolahan">pengolahan</option>
+                    <option value="pencemaran">pencemaran</option>
+                </select> 
+                pupuk hias.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Teknologi 
+                <select id="gb5">
+                    <option value="">-- Pilih --</option>
+                    <option value="pembuatan">pembuatan</option>
+                    <option value="pelatihan">pelatihan</option>
+                    <option value="pembelian">pembelian</option>
+                    <option value="pengolahan">pengolahan</option>
+                    <option value="pencemaran">pencemaran</option>
+                </select> 
+                sisa makanan ini sangat cocok diterapkan di kota-kota besar.
+            </label>
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis Mandiri:</strong> Tuliskan 1 paragraf pendek (50-80 kata) menceritakan bagaimana sampah dikelola di lingkungan tempat tinggal Anda! Gunakan minimal 2 kata benda berimbuhan <em>pe-...-an</em> (seperti: <em>pengolahan, pembuangan, pemilahan, pencemaran</em>) yang telah dipelajari!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan cerita pengelolaan sampah di lingkungan Anda..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-80 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-80 kata)`;
+        
+        if (words >= 50 && words <= 80) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Answer Key Part A (Pemasukan Teks Imbuhan pe-...-an)
+        const keyA = {
+            ga1: "pengolahan",
+            ga2: "pembuangan",
+            ga3: "pemilahan",
+            ga4: "pencemaran",
+            ga5: "pembusukan"
+        };
+
+        // Answer Key Part B (Dropdown Selection)
+        const keyB = {
+            gb1: "pencemaran",
+            gb2: "pembuatan",
+            gb3: "pelatihan",
+            gb4: "pembelian",
+            gb5: "pengolahan"
+        };
+
+        let score = 0;
+        let total = 10;
+
+        // Check Part A
+        for (let id in keyA) {
+            let input = document.getElementById(id).value.trim().toLowerCase();
+            if (input === keyA[id]) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let select = document.getElementById(id);
+            if (select.value === keyB[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Sangat Bagus! Skor Anda: ${score}/${total}. Semua imbuhan dan kosakata Anda sudah tepat!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom atau pilihan yang berwarna merah! <br><small>*Tips: Perhatikan aturan perubahan bunyi imbuhan pe-...-an (misal: olah &rarr; pengolahan, buang &rarr; pembuangan).</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Sepeda Listrik Umum</title>
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #52b788;
+            --bg-color: #f8fbf9;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #d8f3dc;
+            padding: 20px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .grammar-box {
+            background-color: #eefcff;
+            padding: 15px;
+            border-left: 4px solid #17a2b8;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Layanan Transportasi Sepeda Listrik Umum Mulai Diminati Masyarakat Kota</h3>
+            <p><strong>SEMARANG</strong> - Layanan penyewaan sepeda listrik umum kini semakin mudah ditemukan di sudut-sudut kota besar di Indonesia. Kehadiran fasilitas transportasi ramah lingkungan ini menjadi pilihan baru bagi masyarakat untuk berpergian dalam jarak dekat. Selain efisien dan hemat biaya, penggunaan sepeda listrik ini juga membantu mengurangi emisi gas buang kendaraan bermotor.</p>
+            <br>
+            <p>Proses penggunaan fasilitas ini sangat praktis karena berbasis aplikasi di ponsel pintar. Pengguna cukup mengunduh aplikasi resmi, memindai kode di stang sepeda, dan sepeda akan terbuka secara otomatis. Setelah selesai digunakan, pengguna dapat memarkirkan sepeda tersebut di titik pemberhentian yang telah ditentukan oleh pengelola.</p>
+            <br>
+            <p>Meskipun demikian, ada beberapa kendala yang masih sering dihadapi oleh para pengguna di jalan. Salah satunya adalah keterbatasan jalur khusus sepeda, sehingga pengguna terpaksa harus berbagi jalan dengan kendaraan besar. Oleh karena itu, pengelola mengimbau agar para pengendara selalu memakai helm pelindung dan tidak berkendara dengan kecepatan tinggi demi keselamatan bersama.</p>
+            <br>
+            <p>Pemerintah kota menyambut baik ekspansi transportasi hijau ini. Dukungan pemerintah diberikan dengan cara menambah jumlah jalur sepeda dan memperbanyak titik pengisian daya baterai listrik. Langkah kolaborasi ini diharapkan mampu mengubah pola transportasi masyarakat urban menjadi lebih sehat dan ramah lingkungan.</p>
+            <br>
+            <p>Secara keseluruhan, sepeda listrik umum bukan sekadar tren sesaat, melainkan solusi nyata untuk mengatasi kemacetan dan polusi di daerah perkotaan. Dengan perawatan fasilitas yang baik serta kesadaran pengguna dalam mematuhi aturan lalu lintas, layanan ini akan memberikan manfaat jangka panjang bagi seluruh warga kota.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Fasilitas</strong></td>
+                    <td>Nomina</td>
+                    <td>Sarana atau alat yang disediakan untuk mempermudah kegiatan.</td>
+                </tr>
+                <tr>
+                    <td><strong>Memindai</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Melihat, memeriksa, atau membaca data (seperti kode QR) dengan alat elektronik.</td>
+                </tr>
+                <tr>
+                    <td><strong>Keterbatasan</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Keadaan terbatas; hal yang memiliki kekurangan atau batas tertentu.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mengimbau</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Pemberian panggilan, ajakan, atau saran yang serious kepada publik.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ekspansi</strong></td>
+                    <td>Nomina</td>
+                    <td>Perluasan, penambahan, atau penyebaran wilayah/layanan baru.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kesadaran</strong></td>
+                    <td>Nomina (ke-...-an)</td>
+                    <td>Hal yang dirasakan, diketahui, atau dipahami dengan sungguh-sungguh.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Mengapa sepeda listrik umum menjadi pilihan baru yang diminati masyarakat kota?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Jelaskan langkah-langkah singkat untuk menggunakan sepeda listrik berbasis aplikasi!</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Kendala utama apa yang masih sering dirasakan pengendara sepeda listrik di jalan umum?</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Apa bentuk dukungan yang diberikan pemerintah kota untuk mendukung transportasi hijau ini?</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Sebutkan dua imbauan pengelola kepada pengendara demi keselamatan berkendara!</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Kata Penghubung Kausalitas / Persebab-akibatan (Karena / Sebab / Oleh Karena Itu / Sehingga)</strong><br>
+            <small>
+                • <strong>Karena / Sebab</strong>: Mengawali alasan/penyebab (di dalam satu kalimat).<br>
+                • <strong>Oleh karena itu</strong>: Antarkalimat, mengawali kalimat baru yang berisi akibat/kesimpulan.<br>
+                • <strong>Sehingga</strong>: Mengawali klausa akibat di dalam satu kalimat majemuk.
+            </small>
+        </div>
+
+        <h3>A. Lengkapilah kalimat di bawah ini dengan memilih kata penghubung yang tepat: <em>Karena, Oleh karena itu,</em> atau <em>Sehingga</em>! (5 Soal)</h3>
+        <br>
+        
+        <div class="question-group">
+            <label>1. Banyak warga memilih sepeda listrik 
+                <select id="ga1">
+                    <option value="">-- Pilih --</option>
+                    <option value="karena">karena</option>
+                    <option value="oleh karena itu">oleh karena itu</option>
+                    <option value="sehingga">sehingga</option>
+                </select> 
+                biayanya lebih murah daripada membeli bensin.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Jumlah jalur sepeda di kota masih sangat sedikit. 
+                <select id="ga2">
+                    <option value="">-- Pilih --</option>
+                    <option value="karena">Karena</option>
+                    <option value="oleh karena itu">Oleh karena itu</option>
+                    <option value="sehingga">Sehingga</option>
+                </select>, 
+                pengendara harus ekstra berhati-hati.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Aplikasi sepeda listrik mengalami gangguan teknis, 
+                <select id="ga3">
+                    <option value="">-- Pilih --</option>
+                    <option value="karena">karena</option>
+                    <option value="oleh karena itu">oleh karena itu</option>
+                    <option value="sehingga">sehingga</option>
+                </select> 
+                sepeda tidak bisa dibuka otomatis.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Pengendara diimbau memakai helm 
+                <select id="ga4">
+                    <option value="">-- Pilih --</option>
+                    <option value="karena">karena</option>
+                    <option value="oleh karena itu">oleh karena itu</option>
+                    <option value="sehingga">sehingga</option>
+                </select> 
+                keselamatan di jalan raya sangat penting.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Pemerintah kota memperbanyak tempat pengisian daya 
+                <select id="ga5">
+                    <option value="">-- Pilih --</option>
+                    <option value="karena">karena</option>
+                    <option value="oleh karena itu">oleh karena itu</option>
+                    <option value="sehingga">sehingga</option>
+                </select> 
+                masyarakat semakin nyaman menggunakan sepeda listrik.
+            </label>
+        </div>
+
+        <br>
+        <h3>B. Gabungkan atau susun dua kalimat di bawah ini menggunakan kata penghubung yang ditentukan! (5 Soal)</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Baterai sepeda listrik sudah habis. Pengguna harus mengganti dengan sepeda lain. <em>(Gunakan: sehingga)</em></label>
+            <input type="text" id="gb1" placeholder="Tulis jawaban di sini...">
+        </div>
+        <div class="question-group">
+            <label>2. Sepeda listrik tidak menghasilkan emisi gas buang. Kendaraan ini sangat ramah lingkungan. <em>(Gunakan: karena)</em></label>
+            <input type="text" id="gb2" placeholder="Tulis jawaban di sini...">
+        </div>
+        <div class="question-group">
+            <label>3. Jalur khusus sepeda sering terhalang oleh mobil yang parkir. Para pesepeda terpaksa masuk ke jalur cepat. <em>(Gunakan: Oleh karena itu)</em></label>
+            <input type="text" id="gb3" placeholder="Tulis jawaban di sini...">
+        </div>
+        <div class="question-group">
+            <label>4. Siswa itu terlambat datang ke sekolah. Rantai sepedanya putus di tengah jalan. <em>(Gunakan: sebab)</em></label>
+            <input type="text" id="gb4" placeholder="Tulis jawaban di sini...">
+        </div>
+        <div class="question-group">
+            <label>5. Layanan sepeda umum ini sangat praktis. Jumlah penggunanya meningkat pesat setiap bulan. <em>(Gunakan: sehingga)</em></label>
+            <input type="text" id="gb5" placeholder="Tulis jawaban di sini...">
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis Mandiri:</strong> Tuliskan 1 paragraf pendek (50-80 kata) mengenai jenis transportasi yang biasa Anda gunakan sehari-hari beserta alasannya! Gunakan minimal 2 kata penghubung kausalitas (<em>karena / sebab / oleh karena itu / sehingga</em>) yang telah dipelajari!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan paragraf Anda di sini..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-80 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-80 kata)`;
+        
+        if (words >= 50 && words <= 80) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Answer Key Part A
+        const keyA = {
+            ga1: "karena",
+            ga2: "oleh karena itu",
+            ga3: "sehingga",
+            ga4: "karena",
+            ga5: "sehingga"
+        };
+
+        // Answer Key Part B
+        const keyB = {
+            gb1: [
+                "baterai sepeda listrik sudah habis sehingga pengguna harus mengganti dengan sepeda lain",
+                "baterai sepeda listrik sudah habis, sehingga pengguna harus mengganti dengan sepeda lain"
+            ],
+            gb2: [
+                "sepeda listrik sangat ramah lingkungan karena tidak menghasilkan emisi gas buang",
+                "kendaraan ini sangat ramah lingkungan karena sepeda listrik tidak menghasilkan emisi gas buang",
+                "sepeda listrik tidak menghasilkan emisi gas buang karena kendaraan ini sangat ramah lingkungan"
+            ],
+            gb3: [
+                "jalur khusus sepeda sering terhalang oleh mobil yang parkir. oleh karena itu, para pesepeda terpaksa masuk ke jalur cepat",
+                "jalur khusus sepeda sering terhalang oleh mobil yang parkir. oleh karena itu para pesepeda terpaksa masuk ke jalur cepat"
+            ],
+            gb4: [
+                "siswa itu terlambat datang ke sekolah sebab rantai sepedanya putus di tengah jalan"
+            ],
+            gb5: [
+                "layanan sepeda umum ini sangat praktis sehingga jumlah penggunanya meningkat pesat setiap bulan",
+                "layanan sepeda umum ini sangat praktis, sehingga jumlah penggunanya meningkat pesat setiap bulan"
+            ]
+        };
+
+        let score = 0;
+        let total = 10;
+
+        // Check Part A
+        for (let id in keyA) {
+            let select = document.getElementById(id);
+            if (select.value.toLowerCase() === keyA[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let input = document.getElementById(id).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            if (input.endsWith('.')) {
+                input = input.slice(0, -1);
+            }
+
+            const validOptions = keyB[id].map(opt => opt.endsWith('.') ? opt.slice(0, -1) : opt);
+
+            if (validOptions.includes(input)) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Hebat sekali! Skor Anda: ${score}/${total}. Semua jawaban Anda benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom atau pilihan yang berwarna merah! <br><small>*Tips: Perhatikan penggunaan konjungsi kausalitas di dalam satu kalimat vs antarkalimat (Oleh karena itu).</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>
