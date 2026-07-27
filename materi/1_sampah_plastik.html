@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Kemasan Bioplastik Kulit Udang</title>
+    <style>
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #0d9488;
+            --accent-color: #14b8a6;
+            --bg-color: #f0fdf4;
+            --card-bg: #ffffff;
+            --text-color: #134e4a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Anti-copy CSS Rule */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #ccfbf1;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #ccfbf1;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0fdf4;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #fef9c3;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+        }
+
+        .grammar-box {
+            background-color: #f0fdf4;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Siswa SMA di Indonesia Membuat Kemasan Ramah Lingkungan dari Kulit Udang</h3>
+            <p><strong>JAKARTA</strong> - Masalah sampah plastik di Indonesia masih menjadi perhatian besar bagi pemerintah dan masyarakat. Untuk mengurangi dampak buruk pencemaran lingkungan ini, sebuah tim siswa SMA di Indonesia berhasil menciptakan sebuah inovasi baru yang sangat menarik. Mereka berhasil membuat kemasan makanan ramah lingkungan dengan memanfaatkan limbah kulit udang dan cangkang kepiting yang biasanya dibuang begitu saja.</p>
+            <br>
+            <p>Ide kreatif ini muncul ketika para siswa melihat banyaknya limbah kulit udang yang menumpuk dan menimbulkan bau tidak sedap di pasar tradisional. Setelah melakukan riset ilmiah yang sederhana, mereka menemukan bahwa kulit udang mengandung zat kimia alami bernama kitosan. Zat ini ternyata memiliki struktur yang kuat dan dapat diolah menjadi bahan plastik organik atau sering disebut bioplastik.</p>
+            <br>
+            <p>Proses pembuatan bioplastik ini pun cukup sederhana dan menggunakan peralatan yang ada di laboratorium sekolah. Pertama-tama, kulit udang dibersihkan dari kotoran, dikeringkan di bawah sinar matahari, lalu dihaluskan menjadi tepung. Setelah itu, tepung kulit udang tersebut dicampur dengan air dan beberapa bahan alami lainnya hingga menjadi cairan kental, kemudian dicetak menjadi lembaran tipis yang mirip dengan plastik konvensional.</p>
+            <br>
+            <p>Kemasan organik dari kulit udang ini memiliki banyak keunggulan jika dibandingkan dengan plastik biasa. Selain teksturnya yang kuat dan aman jika bersentuhan langsung dengan makanan, kemasan ini juga bersifat mudah terurai (biodegradable). Plastik kulit udang ini dapat hancur secara alami di dalam tanah hanya dalam waktu sekitar dua minggu, sangat jauh berbeda dengan plastik biasa yang membutuhkan waktu ratusan tahun untuk hancur.</p>
+            <br>
+            <p>Saat ini, beberapa warung makan lokal sudah mulai tertarik untuk menguji coba kemasan ramah lingkungan buatan para siswa ini. Walaupun biaya produksinya saat ini masih sedikit lebih mahal daripada plastik biasa, masyarakat merespons inovasi ini dengan sangat positif. Banyak konsumen yang merasa lebih nyaman karena tahu bahwa kemasan yang mereka gunakan tidak akan merusak bumi.</p>
+            <br>
+            <p>Melalui inovasi kreatif ini, para siswa berharap dapat menginspirasi generasi muda lainnya untuk ikut menjaga kelestarian alam. Karya ilmiah mereka yang luar biasa ini tidak hanya berhasil membantu lingkungan, tetapi juga telah memenangkan penghargaan tertinggi dalam kompetisi sains tingkat nasional.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Limbah</strong></td>
+                    <td>Nomina / Sifat</td>
+                    <td>Sisa dari proses produksi; sampah industri atau rumah tangga.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ramah lingkungan</strong></td>
+                    <td>Adjektiva</td>
+                    <td>Tidak merusak atau tidak memberikan dampak buruk pada alam.</td>
+                </tr>
+                <tr>
+                    <td><strong>Memanfaatkan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Menggunakan sesuatu agar menjadi berguna atau bermanfaat.</td>
+                </tr>
+                <tr>
+                    <td><strong>Diolah</strong></td>
+                    <td>Verba (Pasif)</td>
+                    <td>Dimasak, dikerjakan, atau diproses menjadi barang baru.</td>
+                </tr>
+                <tr>
+                    <td><strong>Keunggulan</strong></td>
+                    <td>Nomina</td>
+                    <td>Kelebihan; kebaikan; hal yang lebih baik dari yang lain.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hancur / Terurai</strong></td>
+                    <td>Verba</td>
+                    <td>Rusak menjadi bagian-bagian yang sangat kecil atau menyatu dengan tanah.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Apa masalah utama di Indonesia yang melatarbelakangi inovasi para siswa SMA tersebut?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Dari mana para siswa mendapatkan ide untuk memanfaatkan kulit udang?</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Zat apa yang terkandung di dalam kulit udang sehingga bisa dibuat menjadi bioplastik?</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Bagaimana proses singkat pembuatan kemasan makanan dari kulit udang tersebut?</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Sebutkan dua keunggulan kemasan kulit udang dibandingkan dengan plastik biasa!</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q6">6. Bagaimana respons masyarakat dan warung makan lokal terhadap inovasi ini?</label>
+            <textarea id="q6" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Kalimat Aktif (me- / me-...-kan) dan Kalimat Pasif (di- / di-...-kan)</strong><br>
+            <small>
+                Contoh: Para siswa membersihkan kulit udang. &rarr; <strong>Kulit udang dibersihkan oleh para siswa.</strong>
+            </small>
+        </div>
+
+        <h3>A. Ubahlah Kalimat Aktif di bawah ini menjadi Kalimat Pasif yang tepat! (4 Soal)</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Para siswa memanfaatkan limbah kulit udang untuk bahan bioplastik.</label>
+            <input type="text" id="ga1" placeholder="Pasif: Limbah kulit udang...">
+        </div>
+        <div class="question-group">
+            <label>2. Pemerintah Indonesia memperhatikan masalah sampah plastik yang menumpuk.</label>
+            <input type="text" id="ga2" placeholder="Pasif: Masalah sampah plastik...">
+        </div>
+        <div class="question-group">
+            <label>3. Tim siswa SMA menciptakan kemasan makanan yang aman untuk bumi.</label>
+            <input type="text" id="ga3" placeholder="Pasif: Kemasan makanan...">
+        </div>
+        <div class="question-group">
+            <label>4. Inovasi baru ini dapat menginspirasi generasi muda Indonesia.</label>
+            <input type="text" id="ga4" placeholder="Pasif: Generasi muda Indonesia...">
+        </div>
+
+        <br>
+        <h3>B. Lengkapilah kalimat di bawah ini menggunakan kata yang tepat di dalam kotak! (5 Soal)</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: limbah | diolah | ramah lingkungan | keunggulan | hancur
+        </div>
+
+        <div class="question-group">
+            <label>1. Kita harus menggunakan kantong belanja yang 
+                <select id="gb1">
+                    <option value="">-- Pilih --</option>
+                    <option value="limbah">limbah</option>
+                    <option value="diolah">diolah</option>
+                    <option value="ramah lingkungan">ramah lingkungan</option>
+                    <option value="keunggulan">keunggulan</option>
+                    <option value="hancur">hancur</option>
+                </select> 
+                agar bumi tidak tercemar.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Bahan organik dapat 
+                <select id="gb2">
+                    <option value="">-- Pilih --</option>
+                    <option value="limbah">limbah</option>
+                    <option value="diolah">diolah</option>
+                    <option value="ramah lingkungan">ramah lingkungan</option>
+                    <option value="keunggulan">keunggulan</option>
+                    <option value="hancur">hancur</option>
+                </select> 
+                di dalam tanah dalam waktu dua minggu saja.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Salah satu 
+                <select id="gb3">
+                    <option value="">-- Pilih --</option>
+                    <option value="limbah">limbah</option>
+                    <option value="diolah">diolah</option>
+                    <option value="ramah lingkungan">ramah lingkungan</option>
+                    <option value="keunggulan">keunggulan</option>
+                    <option value="hancur">hancur</option>
+                </select> 
+                produk ini adalah harganya yang sangat murah dan terjangkau.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Kulit udang yang awalnya dianggap sebagai 
+                <select id="gb4">
+                    <option value="">-- Pilih --</option>
+                    <option value="limbah">limbah</option>
+                    <option value="diolah">diolah</option>
+                    <option value="ramah lingkungan">ramah lingkungan</option>
+                    <option value="keunggulan">keunggulan</option>
+                    <option value="hancur">hancur</option>
+                </select> 
+                ternyata bisa menjadi produk bernilai tinggi.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Sampah organik itu 
+                <select id="gb5">
+                    <option value="">-- Pilih --</option>
+                    <option value="limbah">limbah</option>
+                    <option value="diolah">diolah</option>
+                    <option value="ramah lingkungan">ramah lingkungan</option>
+                    <option value="keunggulan">keunggulan</option>
+                    <option value="hancur">hancur</option>
+                </select> 
+                menjadi pupuk kompos yang menyuburkan tanaman.
+            </label>
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis:</strong> Buatlah sebuah paragraf pendek (50-80 kata) yang menceritakan tentang masalah sampah atau gerakan ramah lingkungan yang ada di kota atau negara asal Anda!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan cerita masalah sampah/gerakan ramah lingkungan di daerah Anda..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-80 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Anti Copy JS
+    document.addEventListener('copy', function(e) { e.preventDefault(); });
+    document.addEventListener('cut', function(e) { e.preventDefault(); });
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-80 kata)`;
+        
+        if (words >= 50 && words <= 80) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Key Part A (Kalimat Pasif)
+        const keyA = {
+            ga1: [
+                "limbah kulit udang dimanfaatkan oleh para siswa untuk bahan bioplastik",
+                "limbah kulit udang dimanfaatkan para siswa untuk bahan bioplastik"
+            ],
+            ga2: [
+                "masalah sampah plastik yang menumpuk diperhatikan oleh pemerintah indonesia",
+                "masalah sampah plastik yang menumpuk diperhatikan pemerintah indonesia"
+            ],
+            ga3: [
+                "kemasan makanan yang aman untuk bumi diciptakan oleh tim siswa sma",
+                "kemasan makanan yang aman untuk bumi diciptakan tim siswa sma"
+            ],
+            ga4: [
+                "generasi muda indonesia dapat diinspirasi oleh inovasi baru ini",
+                "generasi muda indonesia dapat diinspirasi inovasi baru ini"
+            ]
+        };
+
+        // Key Part B (Pilihan Kata)
+        const keyB = {
+            gb1: "ramah lingkungan",
+            gb2: "hancur",
+            gb3: "keunggulan",
+            gb4: "limbah",
+            gb5: "diolah"
+        };
+
+        let score = 0;
+        let total = 9;
+
+        // Check Part A
+        for (let id in keyA) {
+            let input = document.getElementById(id).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            if (input.endsWith('.')) {
+                input = input.slice(0, -1);
+            }
+
+            const validOptions = keyA[id].map(opt => opt.endsWith('.') ? opt.slice(0, -1) : opt);
+
+            if (validOptions.includes(input)) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let select = document.getElementById(id);
+            if (select.value === keyB[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Sempurna! Skor Anda: ${score}/${total}. Semua perubahan kalimat pasif dan isian kata Anda benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom/pilihan yang berwarna merah! <br><small>*Tips: Pastikan subjek pasif berada di awal kalimat dan predikat menggunakan awalan 'di-'.</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>
