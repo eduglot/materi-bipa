@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Mengenal Kompresor</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #3b82f6;
+            --bg-color: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Anti-copy CSS Rule */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #e0f2fe;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #e0f2fe;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f9ff;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #fef9c3;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+        }
+
+        .grammar-box {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Mengenal Kompresor: Mesin Sederhana yang Membantu Kehidupan Sehari-hari</h3>
+            <p><strong>BANDUNG</strong> - Banyak orang sering melihat mesin kompresor udara di bengkel pinggir jalan, tetapi tidak semua orang tahu bagaimana cara kerja mesin ini[cite: 11]. Kompresor adalah sebuah alat mekanis yang berfungsi untuk meningkatkan tekanan udara atau gas[cite: 11]. Mesin ini mengumpulkan udara dari sekitar, lalu memampatkan udara tersebut ke dalam sebuah tangki baja yang kuat[cite: 11].</p>
+            <br>
+            <p>Di Indonesia, kompresor udara paling sering digunakan untuk mengisi angin ban sepeda, sepeda motor, dan mobil[cite: 11]. Ketika ban kendaraan kekurangan udara, montir di bengkel akan menghubungkan selang kompresor ke ban tersebut[cite: 11]. Udara bertekanan tinggi dari tangki kompresor mengalir dengan cepat dan membuat ban kembali keras dalam beberapa detik saja[cite: 11]. Tanpa mesin ini, mengisi angin ban akan memakan waktu lama jika menggunakan pompa tangan manual[cite: 11].</p>
+            <br>
+            <p>Selain di bengkel motor, kompresor sebenarnya ada di dalam peralatan rumah tangga yang kita gunakan setiap hari[cite: 11]. Kulkas dan pendingin ruangan (AC) menggunakan kompresor khusus yang ukurannya lebih kecil[cite: 11]. Di dalam kulkas, kompresor bertugas mengalirkan cairan pendingin ke seluruh sistem[cite: 11]. Proses ini memindahkan panas dari dalam kulkas ke luar, sehingga makanan dan minuman di dalamnya tetap dingin dan segar[cite: 11].</p>
+            <br>
+            <p>Dalam dunia industri kreatif, mesin kompresor juga memegang peranan penting bagi para seniman cat semprot atau airbrush[cite: 11]. Seniman menggunakan udara bertekanan tinggi dari kompresor untuk menyemprotkan cat secara halus dan rata pada permukaan media, seperti helm, motor, atau dinding[cite: 11]. Teknik ini mempermudah seniman dalam menciptakan karya seni yang mendetail dan menghasilkan warna yang sangat rapi[cite: 11].</p>
+            <br>
+            <p>Mengingat pentingnya fungsi alat ini, para pengguna diimbau untuk selalu memperhatikan perawatan mesin secara berkala[cite: 11]. Pemilik harus rutin membuang air sisa kondensasi di dalam tangki dan memeriksa oli mesin agar kompresor tidak cepat rusak[cite: 11]. Perawatan yang baik memastikan mesin dapat digunakan dalam jangka waktu lama dengan aman[cite: 11].</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan![cite: 11]</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Memampatkan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Menekan sesuatu (seperti udara atau gas) agar menjadi lebih padat atau kecil.[cite: 11]</td>
+                </tr>
+                <tr>
+                    <td><strong>Mengalirkan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Membuat air, udara, atau cairan bergerak mengalir ke suatu tempat.[cite: 11]</td>
+                </tr>
+                <tr>
+                    <td><strong>Menyemprotkan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Mengeluarkan cairan atau udara dengan keras melalui lubang kecil.[cite: 11]</td>
+                </tr>
+                <tr>
+                    <td><strong>Memindahkan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Membawa atau menggeser sesuatu dari satu tempat ke tempat lain.[cite: 11]</td>
+                </tr>
+                <tr>
+                    <td><strong>Mempermudah</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Membuat suatu pekerjaan menjadi lebih mudah dilakukan.[cite: 11]</td>
+                </tr>
+                <tr>
+                    <td><strong>Memperhatikan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Melihat dan menjaga sesuatu dengan sungguh-sungguh atau teliti.[cite: 11]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks berita![cite: 11]</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Apa fungsi utama dari mesin kompresor berdasarkan paragraf pertama?[cite: 11]</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Di mana masyarakat Indonesia paling sering melihat atau menemukan kompresor udara?[cite: 11]</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Sebutkan dua alat rumah tangga yang menggunakan kompresor kecil di dalamnya![cite: 11]</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Bagaimana cara kerja kompresor dalam menjaga makanan di kulkas tetap segar?[cite: 11]</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Mengapa para seniman cat semprot (airbrush) membutuhkan mesin kompresor?[cite: 11]</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q6">6. Apa yang harus dilakukan pemilik agar mesin kompresor tidak cepat rusak?[cite: 11]</label>
+            <textarea id="q6" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Kalimat Aktif (me- / me-...-kan) menjadi Kalimat Pasif (di- / di-...-kan)[cite: 11]</strong><br>
+            <small>
+                Contoh: Montir menghubungkan selang ke ban. &rarr; <strong>Selang dihubungkan ke ban oleh montir.</strong>[cite: 11]
+            </small>
+        </div>
+
+        <h3>A. Mengubah Kalimat Aktif (me-kan) menjadi Kalimat Pasif (di-kan)! (4 Soal)[cite: 11]</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Mesin kompresor udara mengumpulkan udara dari lingkungan sekitar.[cite: 11]</label>
+            <input type="text" id="ga1" placeholder="Pasif: Udara dari lingkungan sekitar...">
+        </div>
+        <div class="question-group">
+            <label>2. Kompresor di dalam kulkas mengalirkan cairan pendingin ke seluruh sistem.[cite: 11]</label>
+            <input type="text" id="ga2" placeholder="Pasif: Cairan pendingin...">
+        </div>
+        <div class="question-group">
+            <label>3. Seniman menyemprotkan cat secara halus pada permukaan helm.[cite: 11]</label>
+            <input type="text" id="ga3" placeholder="Pasif: Cat...">
+        </div>
+        <div class="question-group">
+            <label>4. Teknik airbrush dapat mempermudah pekerjaan para pelaku industri kreatif.[cite: 11]</label>
+            <input type="text" id="ga4" placeholder="Pasif: Pekerjaan para pelaku industri kreatif...">
+        </div>
+
+        <br>
+        <h3>B. Lengkapilah kalimat di bawah ini menggunakan kata yang tepat di dalam kotak! (5 Soal)[cite: 11]</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: memampatkan | memindahkan | mempermudah | dialirkan | diperhatikan[cite: 11]
+        </div>
+
+        <div class="question-group">
+            <label>1. Alat modern ini dibuat untuk 
+                <select id="gb1">
+                    <option value="">-- Pilih --</option>
+                    <option value="memampatkan">memampatkan</option>
+                    <option value="memindahkan">memindahkan</option>
+                    <option value="mempermudah">mempermudah</option>
+                    <option value="dialirkan">dialirkan</option>
+                    <option value="diperhatikan">diperhatikan</option>
+                </select> 
+                pekerjaan petani di desa.[cite: 11]
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Kondisi kebersihan mesin harus selalu 
+                <select id="gb2">
+                    <option value="">-- Pilih --</option>
+                    <option value="memampatkan">memampatkan</option>
+                    <option value="memindahkan">memindahkan</option>
+                    <option value="mempermudah">mempermudah</option>
+                    <option value="dialirkan">dialirkan</option>
+                    <option value="diperhatikan">diperhatikan</option>
+                </select> 
+                oleh seluruh pekerja pabrik.[cite: 11]
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Air bersih dari pegunungan itu 
+                <select id="gb3">
+                    <option value="">-- Pilih --</option>
+                    <option value="memampatkan">memampatkan</option>
+                    <option value="memindahkan">memindahkan</option>
+                    <option value="mempermudah">mempermudah</option>
+                    <option value="dialirkan">dialirkan</option>
+                    <option value="diperhatikan">diperhatikan</option>
+                </select> 
+                melalui pipa ke rumah warga.[cite: 11]
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Fungsi utama alat penekan ini adalah untuk 
+                <select id="gb4">
+                    <option value="">-- Pilih --</option>
+                    <option value="memampatkan">memampatkan</option>
+                    <option value="memindahkan">memindahkan</option>
+                    <option value="mempermudah">mempermudah</option>
+                    <option value="dialirkan">dialirkan</option>
+                    <option value="diperhatikan">diperhatikan</option>
+                </select> 
+                gas ke dalam tabung.[cite: 11]
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Tugasnya di toko bangunan adalah 
+                <select id="gb5">
+                    <option value="">-- Pilih --</option>
+                    <option value="memampatkan">memampatkan</option>
+                    <option value="memindahkan">memindahkan</option>
+                    <option value="mempermudah">mempermudah</option>
+                    <option value="dialirkan">dialirkan</option>
+                    <option value="diperhatikan">diperhatikan</option>
+                </select> 
+                barang-barang berat ke atas truk.[cite: 11]
+            </label>
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Tugas Menulis:</strong> Buatlah penjelasan pendek (50-70 kata) tentang satu jenis mesin atau alat teknologi sederhana yang paling sering Anda gunakan di rumah dan jelaskan fungsinya![cite: 11]</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan penjelasan alat/mesin sederhana di rumah Anda..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target: 50-70 kata)[cite: 11]</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Anti Copy JS
+    document.addEventListener('copy', function(e) { e.preventDefault(); });
+    document.addEventListener('cut', function(e) { e.preventDefault(); });
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target: 50-70 kata)`;
+        
+        if (words >= 50 && words <= 70) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Key Part A (Kalimat Pasif)
+        const keyA = {
+            ga1: [
+                "udara dari lingkungan sekitar dikumpulkan oleh mesin kompresor udara",
+                "udara dari lingkungan sekitar dikumpulkan mesin kompresor udara"
+            ],
+            ga2: [
+                "cairan pendingin dialirkan ke seluruh sistem oleh kompresor di dalam kulkas",
+                "cairan pendingin dialirkan ke seluruh sistem kompresor di dalam kulkas"
+            ],
+            ga3: [
+                "cat disemprotkan secara halus pada permukaan helm oleh seniman",
+                "cat disemprotkan secara halus pada permukaan helm seniman"
+            ],
+            ga4: [
+                "pekerjaan para pelaku industri kreatif dapat dipermudah oleh teknik airbrush",
+                "pekerjaan para pelaku industri kreatif dapat dipermudah teknik airbrush"
+            ]
+        };
+
+        // Key Part B (Pilihan Kata)
+        const keyB = {
+            gb1: "mempermudah",
+            gb2: "diperhatikan",
+            gb3: "dialirkan",
+            gb4: "memampatkan",
+            gb5: "memindahkan"
+        };
+
+        let score = 0;
+        let total = 9;
+
+        // Check Part A
+        for (let id in keyA) {
+            let input = document.getElementById(id).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            if (input.endsWith('.')) {
+                input = input.slice(0, -1);
+            }
+
+            const validOptions = keyA[id].map(opt => opt.endsWith('.') ? opt.slice(0, -1) : opt);
+
+            if (validOptions.includes(input)) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let select = document.getElementById(id);
+            if (select.value === keyB[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Sempurna! Skor Anda: ${score}/${total}. Semua perubahan kalimat pasif dan isian kata Anda benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom/pilihan yang berwarna merah! <br><small>*Tips: Perhatikan bahwa objek kalimat aktif menjadi subjek pada kalimat pasif.</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>
