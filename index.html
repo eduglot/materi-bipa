@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Lembar Kerja BIPA B1 - Bahasa Indonesia Interaktif</title>
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --accent-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --subtext-color: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--subtext-color);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: #eff6ff;
+            color: var(--accent-color);
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--subtext-color);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-open {
+            display: block;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-open:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Border accent colors per theme */
+        .card-mod-1 { border-top-color: #3498db; }
+        .card-mod-2 { border-top-color: #3182ce; }
+        .card-mod-3 { border-top-color: #40916c; }
+        .card-mod-4 { border-top-color: #52b788; }
+        .card-mod-5 { border-top-color: #0077b6; }
+        .card-mod-6 { border-top-color: #8b5a2b; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--subtext-color);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Portal Lembar Kerja BIPA B1</h1>
+        <p>Materi Pembelajaran Membaca Interaktif & Latihan Tata Bahasa</p>
+    </header>
+
+    <div class="modules-grid">
+        <!-- Modul 1 -->
+        <div class="card card-mod-1">
+            <div>
+                <span class="card-tag">Modul 1</span>
+                <h2>Trend Membaca Buku Digital</h2>
+                <p>Topik seputar perubahan tren membaca dari buku cetak ke e-book pada anak muda Indonesia. Fokus tata bahasa: <strong>Nomina Konfiks ke-...-an</strong>.</p>
+            </div>
+            <a href="latihan_bipa.html" class="btn-open">Buka Materi</a>
+        </div>
+
+        <!-- Modul 2 -->
+        <div class="card card-mod-2">
+            <div>
+                <span class="card-tag">Modul 2</span>
+                <h2>Pentingnya Tidur Cukup</h2>
+                <p>Pembahasan pentingnya tidur bagi kesehatan tubuh dan efisiensi kerja harian. Fokus tata bahasa: <strong>Konjungsi Pertentangan (Meskipun / Padahal / Sebaliknya)</strong>.</p>
+            </div>
+            <a href="latihan_bipa_tidur.html" class="btn-open">Buka Materi</a>
+        </div>
+
+        <!-- Modul 3 -->
+        <div class="card card-mod-3">
+            <div>
+                <span class="card-tag">Modul 3</span>
+                <h2>Gaya Hidup Kantong Belanja</h2>
+                <p>Artikel tentang kebijakan pengurangan kantong plastik dan kantong ramah lingkungan. Fokus tata bahasa: <strong>Konjungsi Tujuan (Supaya / Agar / Demi)</strong>.</p>
+            </div>
+            <a href="latihan_bipa_kantong_belanja.html" class="btn-open">Buka Materi</a>
+        </div>
+
+        <!-- Modul 4 -->
+        <div class="card card-mod-4">
+            <div>
+                <span class="card-tag">Modul 4</span>
+                <h2>Sepeda Listrik Umum</h2>
+                <p>Tren penyewaan sepeda listrik umum sebagai transportasi hijau perkotaan. Fokus tata bahasa: <strong>Konjungsi Kausalitas (Karena / Oleh karena itu / Sehingga)</strong>.</p>
+            </div>
+            <a href="latihan_bipa_sepeda_listrik.html" class="btn-open">Buka Materi</a>
+        </div>
+
+        <!-- Modul 5 -->
+        <div class="card card-mod-5">
+            <div>
+                <span class="card-tag">Modul 5</span>
+                <h2>Aplikasi Dompet Digital</h2>
+                <p>Kemudahan transaksi harian dan pembayaran tagihan dengan teknologi fintech. Fokus tata bahasa: <strong>Konjungsi Temporal (Sebelum / Setelah / Berkat)</strong>.</p>
+            </div>
+            <a href="latihan_bipa_dompet_digital.html" class="btn-open">Buka Materi</a>
+        </div>
+
+        <!-- Modul 6 -->
+        <div class="card card-mod-6">
+            <div>
+                <span class="card-tag">Modul 6</span>
+                <h2>Pupuk Kompos Organik</h2>
+                <p>Pemanfaatan sampah dapur rumah tangga menjadi pupuk kompos ramah lingkungan. Fokus tata bahasa: <strong>Nomina Imbuhan pe-...-an</strong>.</p>
+            </div>
+            <a href="latihan_bipa_pupuk_kompos.html" class="btn-open">Buka Materi</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Lembar Kerja Siswa BIPA - Tingkat B1 (Intermediate)</p>
+    </footer>
+</div>
+
+</body>
+</html>
