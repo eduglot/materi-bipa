@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Siswa BIPA B1 - Desa Penglipuran di Bali</title>
+    <style>
+        :root {
+            --primary-color: #92400e;
+            --secondary-color: #b45309;
+            --accent-color: #d97706;
+            --bg-color: #fffbe3;
+            --card-bg: #ffffff;
+            --text-color: #451a03;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Anti-copy CSS Rule */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #fef3c7;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        /* Reading Section */
+        .article {
+            background-color: #fef3c7;
+            padding: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Vocabulary Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fffbeb;
+        }
+
+        /* Interactive Exercises */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .word-bank {
+            background-color: #fef9c3;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+        }
+
+        .grammar-box {
+            background-color: #fffbeb;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LEMBAR KERJA SISWA BIPA</h1>
+        <p>Membaca & Tata Bahasa - Tingkat B1 (Intermediate)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('bagian1')">Bagian 1: Membaca</button>
+        <button class="tab-btn" onclick="openTab('bagian2')">Bagian 2: Kosakata</button>
+        <button class="tab-btn" onclick="openTab('bagian3')">Bagian 3: Pemahaman</button>
+        <button class="tab-btn" onclick="openTab('bagian4')">Bagian 4: Tata Bahasa</button>
+        <button class="tab-btn" onclick="openTab('bagian5')">Bagian 5: Menulis</button>
+    </div>
+
+    <!-- Bagian 1 -->
+    <div id="bagian1" class="tab-content active">
+        <h2>Bagian 1: Membaca Teks Berita</h2>
+        <div class="article">
+            <h3>Desa Penglipuran di Bali: Salah Satu Desa Terbersih di Dunia</h3>
+            <p><strong>BANGLI</strong> - Pulau Bali tidak hanya terkenal dengan pantainya yang indah, tetapi juga dengan kekayaan budayanya. Salah satu tempat yang paling menarik untuk dikunjungi adalah Desa Penglipuran. Desa yang terletak di Kabupaten Bangli ini mendapat penghargaan internasional sebagai salah satu desa terbersih di dunia.</p>
+            <br>
+            <p>Kebersihan Desa Penglipuran sangat dijaga oleh masyarakat setempat. Para warga memiliki aturan yang ketat tentang kebersihan dan kelestarian lingkungan. Setiap rumah diwajibkan menyediakan tempat sampah, dan tidak ada warga atau wisatawan yang boleh membuang sampah sembarangan. Selain itu, kendaraan bermotor dilarang masuk ke dalam jalan utama desa untuk menghindari polusi udara. Para pengunjung harus memarkirkan kendaraannya di luar dan berjalan kaki menyusuri desa yang tenang ini.</p>
+            <br>
+            <p>Hal menarik lainnya dari Desa Penglipuran adalah bentuk rumah-rumah yang terlihat seragam. Arsitektur rumah di desa ini masih mempertahankan desain tradisional Bali. Masyarakat desa menggunakan bambu dan kayu lokal sebagai bahan bangunan utama. Mereka memegang teguh filosofi Tri Hita Karana, yaitu konsep hidup untuk menjaga keharmonisan antara manusia dengan Tuhan, manusia dengan sesama manusia, dan manusia dengan alam sekitarnya.</p>
+            <br>
+            <p>Karena lingkungannya yang sangat bersih dan budayanya yang unik, pemerintah daerah menjadikan desa ini sebagai destinasi wisata unggulan. Masyarakat desa memanfaatkan peluang ekonomi ini dengan sangat baik. Di depan pekarangan rumah mereka, para warga menyediakan berbagai suvenir kerajinan tangan dan makanan khas Bali untuk dijual kepada wisatawan. Salah satu minuman tradisional yang populer di sana adalah loloh cemcem.</p>
+            <br>
+            <p>Kesuksesan Desa Penglipuran dalam melestarikan budaya dan menjaga lingkungan sering menjadi contoh bagi desa-desa wisata lainnya di Indonesia. Desa ini membuktikan bahwa kegiatan pariwisata dapat berjalan berdampingan secara harmonis dengan pelestarian alam dan budaya warisan leluhur.</p>
+        </div>
+    </div>
+
+    <!-- Bagian 2 -->
+    <div id="bagian2" class="tab-content">
+        <h2>Bagian 2: Kosakata (Vocabulary)</h2>
+        <p>Pelajari kosakata berikut sebelum menjawab pertanyaan!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kosakata</th>
+                    <th>Jenis Kata</th>
+                    <th>Arti / Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Seragam</strong></td>
+                    <td>Adjektiva</td>
+                    <td>Sama bentuk, warna, atau ukurannya; tidak berbeda-beda.</td>
+                </tr>
+                <tr>
+                    <td><strong>Menyediakan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Menyiapkan sesuatu agar bisa dipakai oleh orang lain.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mempertahankan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Menjaga sesuatu agar tidak berubah atau tidak hilang.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pekarangan</strong></td>
+                    <td>Nomina</td>
+                    <td>Halaman atau tanah di sekitar rumah.</td>
+                </tr>
+                <tr>
+                    <td><strong>Melestarikan</strong></td>
+                    <td>Verba (Aktif)</td>
+                    <td>Menjaga sesuatu (seperti budaya/alam) agar tetap ada dan hidup.</td>
+                </tr>
+                <tr>
+                    <td><strong>Berdampingan</strong></td>
+                    <td>Verba</td>
+                    <td>Berada bersebelahan atau berjalan bersama-sama dengan rukun.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bagian 3 -->
+    <div id="bagian3" class="tab-content">
+        <h2>Bagian 3: Pertanyaan Pemahaman (Reading Comprehension)</h2>
+        <p>Jawablah pertanyaan-pertanyaan di bawah ini berdasarkan teks bacaan!</p>
+        <br>
+        <div class="question-group">
+            <label for="q1">1. Di mana lokasi Desa Penglipuran berada?</label>
+            <textarea id="q1" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q2">2. Penghargaan internasional apa yang didapatkan oleh desa ini?</label>
+            <textarea id="q2" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q3">3. Mengapa kendaraan bermotor dilarang masuk ke jalan utama desa?</label>
+            <textarea id="q3" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q4">4. Apa yang dimaksud dengan filosofi Tri Hita Karana?</label>
+            <textarea id="q4" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q5">5. Bahan bangunan apa yang biasa digunakan oleh warga untuk membangun rumah?</label>
+            <textarea id="q5" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+        <div class="question-group">
+            <label for="q6">6. Apa yang dilakukan warga desa untuk memanfaatkan peluang ekonomi dari pariwisata?</label>
+            <textarea id="q6" rows="3" placeholder="Tulis jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Bagian 4 -->
+    <div id="bagian4" class="tab-content">
+        <h2>Bagian 4: Latihan Tata Bahasa (Grammar Exercise)</h2>
+        
+        <div class="grammar-box">
+            <strong>Fokus Tata Bahasa: Kalimat Aktif (me- / me-...-kan) dan Kalimat Pasif (di- / di-...-kan)</strong><br>
+            <small>
+                Contoh: Warga melestarikan budaya leluhur. &rarr; <strong>Budaya leluhur dilestarikan oleh warga.</strong>
+            </small>
+        </div>
+
+        <h3>A. Ubahlah Kalimat Aktif di bawah ini menjadi Kalimat Pasif yang tepat! (4 Soal)</h3>
+        <br>
+
+        <div class="question-group">
+            <label>1. Setiap rumah menyediakan tempat sampah di depan pagar.</label>
+            <input type="text" id="ga1" placeholder="Pasif: Tempat sampah...">
+        </div>
+        <div class="question-group">
+            <label>2. Masyarakat mempertahankan arsitektur tradisional Bali.</label>
+            <input type="text" id="ga2" placeholder="Pasif: Arsitektur tradisional Bali...">
+        </div>
+        <div class="question-group">
+            <label>3. Pemerintah daerah menjadikan desa ini sebagai wisata unggulan.</label>
+            <input type="text" id="ga3" placeholder="Pasif: Desa ini...">
+        </div>
+        <div class="question-group">
+            <label>4. Banyak penduduk memanfaatkan pekarangan untuk berdagang.</label>
+            <input type="text" id="ga4" placeholder="Pasif: Pekarangan...">
+        </div>
+
+        <br>
+        <h3>B. Lengkapilah kalimat di bawah ini menggunakan kata yang tepat di dalam kotak! (5 Soal)</h3>
+        <br>
+        <div class="word-bank">
+            Kotak Kata: seragam | berdampingan | pekarangan | melestarikan | disediakan
+        </div>
+
+        <div class="question-group">
+            <label>1. Pemerintah sangat mendukung upaya masyarakat dalam 
+                <select id="gb1">
+                    <option value="">-- Pilih --</option>
+                    <option value="seragam">seragam</option>
+                    <option value="berdampingan">berdampingan</option>
+                    <option value="pekarangan">pekarangan</option>
+                    <option value="melestarikan">melestarikan</option>
+                    <option value="disediakan">disediakan</option>
+                </select> 
+                hutan adat.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>2. Bunga-bunga yang ditanam di 
+                <select id="gb2">
+                    <option value="">-- Pilih --</option>
+                    <option value="seragam">seragam</option>
+                    <option value="berdampingan">berdampingan</option>
+                    <option value="pekarangan">pekarangan</option>
+                    <option value="melestarikan">melestarikan</option>
+                    <option value="disediakan">disediakan</option>
+                </select> 
+                rumah itu sangat indah.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>3. Fasilitas toilet umum sudah 
+                <select id="gb3">
+                    <option value="">-- Pilih --</option>
+                    <option value="seragam">seragam</option>
+                    <option value="berdampingan">berdampingan</option>
+                    <option value="pekarangan">pekarangan</option>
+                    <option value="melestarikan">melestarikan</option>
+                    <option value="disediakan">disediakan</option>
+                </select> 
+                oleh pengelola tempat wisata.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>4. Kemajuan teknologi dan budaya tradisional seharusnya bisa berjalan 
+                <select id="gb4">
+                    <option value="">-- Pilih --</option>
+                    <option value="seragam">seragam</option>
+                    <option value="berdampingan">berdampingan</option>
+                    <option value="pekarangan">pekarangan</option>
+                    <option value="melestarikan">melestarikan</option>
+                    <option value="disediakan">disediakan</option>
+                </select> 
+                secara harmonis.
+            </label>
+        </div>
+        <div class="question-group">
+            <label>5. Anak-anak sekolah di Indonesia memakai baju 
+                <select id="gb5">
+                    <option value="">-- Pilih --</option>
+                    <option value="seragam">seragam</option>
+                    <option value="berdampingan">berdampingan</option>
+                    <option value="pekarangan">pekarangan</option>
+                    <option value="melestarikan">melestarikan</option>
+                    <option value="disediakan">disediakan</option>
+                </select> 
+                berwarna putih dan abu-abu.
+            </label>
+        </div>
+
+        <button class="btn-submit" onclick="checkGrammarAnswers()">Cek Jawaban Tata Bahasa</button>
+        <div id="grammar-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Bagian 5 -->
+    <div id="bagian5" class="tab-content">
+        <h2>Bagian 5: Menulis & Berbicara (Production)</h2>
+        <div class="grammar-box">
+            <p><strong>Pilihlah salah satu tugas di bawah ini:</strong></p>
+            <br>
+            <p><strong>• Tugas Berbicara (Roleplay):</strong> Anda adalah seorang pemandu wisata. Ceritakan kepada teman kelas Anda tentang satu tempat wisata di negara asal Anda yang sangat bersih atau memiliki aturan yang ketat untuk pengunjung!</p>
+            <br>
+            <p><strong>• Tugas Menulis:</strong> Tulislah sebuah draf pidato singkat (60-90 kata) tentang pentingnya menjaga kebersihan di tempat wisata!</p>
+        </div>
+        <div class="question-group">
+            <textarea id="writing-task" rows="6" placeholder="Tuliskan draf pidato atau poin-poin cerita pemandu wisata Anda di sini..." oninput="countWords()"></textarea>
+            <div id="word-count" class="word-count">Jumlah kata: 0 (Target pidato: 60-90 kata)</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Anti Copy JS
+    document.addEventListener('copy', function(e) { e.preventDefault(); });
+    document.addEventListener('cut', function(e) { e.preventDefault(); });
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // Tab Navigation Logic
+    function openTab(tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        contents.forEach(content => content.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Word Count Logic
+    function countWords() {
+        const text = document.getElementById('writing-task').value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const countDisplay = document.getElementById('word-count');
+        countDisplay.innerHTML = `Jumlah kata: ${words} (Target pidato: 60-90 kata)`;
+        
+        if (words >= 60 && words <= 90) {
+            countDisplay.style.color = 'green';
+        } else {
+            countDisplay.style.color = '#6c757d';
+        }
+    }
+
+    // Check Grammar Answers Logic
+    function checkGrammarAnswers() {
+        // Key Part A (Kalimat Pasif)
+        const keyA = {
+            ga1: [
+                "tempat sampah disediakan oleh setiap rumah di depan pagar",
+                "tempat sampah disediakan setiap rumah di depan pagar"
+            ],
+            ga2: [
+                "arsitektur tradisional bali dipertahankan oleh masyarakat",
+                "arsitektur tradisional bali dipertahankan masyarakat"
+            ],
+            ga3: [
+                "desa ini dijadikan sebagai wisata unggulan oleh pemerintah daerah",
+                "desa ini dijadijakan wisata unggulan oleh pemerintah daerah",
+                "desa ini dijadikan sebagai wisata unggulan pemerintah daerah",
+                "desa ini dijadikan wisata unggulan pemerintah daerah"
+            ],
+            ga4: [
+                "pekarangan dimanfaatkan oleh banyak penduduk untuk berdagang",
+                "pekarangan dimanfaatkan banyak penduduk untuk berdagang"
+            ]
+        };
+
+        // Key Part B (Pilihan Kata)
+        const keyB = {
+            gb1: "melestarikan",
+            gb2: "pekarangan",
+            gb3: "disediakan",
+            gb4: "berdampingan",
+            gb5: "seragam"
+        };
+
+        let score = 0;
+        let total = 9;
+
+        // Check Part A
+        for (let id in keyA) {
+            let input = document.getElementById(id).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            if (input.endsWith('.')) {
+                input = input.slice(0, -1);
+            }
+
+            const validOptions = keyA[id].map(opt => opt.endsWith('.') ? opt.slice(0, -1) : opt);
+
+            if (validOptions.includes(input)) {
+                score++;
+                document.getElementById(id).style.borderColor = "green";
+            } else {
+                document.getElementById(id).style.borderColor = "red";
+            }
+        }
+
+        // Check Part B
+        for (let id in keyB) {
+            let select = document.getElementById(id);
+            if (select.value === keyB[id]) {
+                score++;
+                select.style.borderColor = "green";
+            } else {
+                select.style.borderColor = "red";
+            }
+        }
+
+        // Display Feedback
+        const feedback = document.getElementById('grammar-feedback');
+        if (score === total) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = `Sempurna! Skor Anda: ${score}/${total}. Semua perubahan kalimat pasif dan isian kata Anda benar!`;
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = `Skor Anda: ${score}/${total}. Periksa kembali kolom/pilihan yang berwarna merah! <br><small>*Tips: Pastikan objek aktif dipindahkan menjadi subjek pasif di awal kalimat.</small>`;
+        }
+    }
+</script>
+
+</body>
+</html>
